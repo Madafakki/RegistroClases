@@ -1,3 +1,13 @@
 <ion-app>
-  <ion-router-outlet></ion-router-outlet>
+  <ion-router-outlet>
+    <h1>SCANNER QR</h1>
+
+    <zxing-scanner (scanSuccess)="onCodeResult($event)"></zxing-scanner>
+
+    <p>
+      <small>Scanner Result:</small>
+      <!-- Asegúrate de que estás utilizando el nombre correcto de la propiedad -->
+      <strong>{{ scannerResult }}</strong>
+    </p>
+  </ion-router-outlet>
 </ion-app>
