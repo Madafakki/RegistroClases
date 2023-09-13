@@ -7,25 +7,41 @@ import { NavigationExtras, Router } from '@angular/router';
   styleUrls: ['./principal.page.scss'],
 })
 export class PrincipalPage implements OnInit {
-  usuario: string ="";
-  contrasena: string ="";
+  usuario: string = "";
+  contrasena: string = "";
+
   constructor(private router: Router) { }
 
   ngOnInit() {
-    let parametros = this.router.getCurrentNavigation();
-    if(parametros?.extras.state) {
-      this.usuario = parametros?.extras.state['user'];
-      this.contrasena = parametros?.extras.state['pass'];
-    }
+    // Tu código de inicialización aquí
   }
-volver(){
-  let parametros: NavigationExtras = {
-    state: {
-      user: this.usuario,
-      pass: this.contrasena
-      
-    },replaceUrl:true
-}
-this.router.navigate(['login'],parametros);
-}
+
+  volver() {
+    let parametros: NavigationExtras = {
+      state: {
+        user: this.usuario,
+        pass: this.contrasena
+      },
+      replaceUrl: true
+    };
+    this.router.navigate(['login'], parametros);
+  }
+
+  scannerResult: string = '';
+
+  title = 'ANGULARQRSCANNER';
+
+  onCodeResult(result: string) {
+    this.scannerResult = result;
+
+    const navigationExtras: NavigationExtras = {
+      state: {
+        user: this.usuario,
+        pass: this.contrasena,
+        qrData: this.scannerResult
+      }
+    };
+
+    this.router.navigate(['clase'], navigationExtras);
+  }
 }
