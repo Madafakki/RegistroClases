@@ -14,6 +14,11 @@ export class PrincipalPage implements OnInit {
 
   ngOnInit() {
     // Tu código de inicialización aquí
+    let parametros = this.router.getCurrentNavigation();
+    if (parametros?.extras.state) {
+      this.usuario = parametros?.extras.state['user'];
+      this.contrasena = parametros?.extras.state['pass'];
+    }
   }
 
   volver() {
@@ -28,8 +33,6 @@ export class PrincipalPage implements OnInit {
   }
 
   scannerResult: string = '';
-
-  title = 'ANGULARQRSCANNER';
 
   onCodeResult(result: string) {
     this.scannerResult = result;
