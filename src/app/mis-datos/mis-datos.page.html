@@ -21,4 +21,27 @@
       <ion-text>{{ certificado.fechaVencimiento }}</ion-text>
     </ion-item>
   </ion-list>
+
+  <ion-list *ngIf="experienciaLaboral">
+    <ion-item>
+      <ion-label>Nombre de empresa</ion-label>
+      <ion-text>{{ experienciaLaboral.empresa }}</ion-text>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Inicio de contrato</ion-label>
+      <ion-text>{{ experienciaLaboral.anoInicio }}</ion-text>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Cargo</ion-label>
+      <ion-text>{{ experienciaLaboral.cargo }}</ion-text>
+    </ion-item>
+
+    <ion-item *ngIf="experienciaLaboral.actualmenteTrabaja">
+      <ion-label>Termino contrato</ion-label>
+      <ion-text>{{ experienciaLaboral.anoTermino }}</ion-text>
+    </ion-item>
+
+  </ion-list>
 </ion-content>

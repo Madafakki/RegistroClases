@@ -10,6 +10,7 @@ export class MisDatosPage {
   usuario: string = '';
   contrasena: string = '';
   certificado: any = null;
+  experienciaLaboral: any = null;
 
   constructor(private router: Router) {
     // Obtener la navegación actual
@@ -20,6 +21,7 @@ export class MisDatosPage {
       this.usuario = navigation.extras.state['user'];
       this.contrasena = navigation.extras.state['pass'];
       this.certificado = navigation.extras.state['certificado'];
+      this.experienciaLaboral = navigation.extras.state['experienciaLaboral'];
     }
   }
 }

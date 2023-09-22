@@ -11,10 +11,17 @@
         Mis Datos
       </ion-segment-button>
     </ion-segment>
+
+    <div class="ion-text-center ion-margin-vertical">
+      <ion-button (click)="irAScannerQR()">Ir al Scanner</ion-button>
+    </div>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <!-- Aquí se mostrará el contenido de la página correspondiente al segmento seleccionado -->
+
+
+
   <router-outlet></router-outlet>
 </ion-content>
