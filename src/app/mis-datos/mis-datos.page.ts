@@ -1,15 +1,22 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-mis-datos',
-  templateUrl: './mis-datos.page.html',
-  styleUrls: ['./mis-datos.page.scss'],
+  templateUrl: 'mis-datos.page.html',
+  styleUrls: ['mis-datos.page.scss'],
 })
-export class MisDatosPage implements OnInit {
+export class MisDatosPage {
+  certificado: any = null;
 
-  constructor() { }
+  constructor(private route: ActivatedRoute) { }
 
-  ngOnInit() {
+  ionViewWillEnter() {
+    // Recuperar datos de certificado de los parámetros
+    this.route.queryParams.subscribe((params) => {
+      if (params && params['state'] && params['state'].certificado) {
+        this.certificado = params['state'].certificado;
+      }
+    });
   }
-
 }

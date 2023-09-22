@@ -1,13 +1,30 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>certificaciones</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">certificaciones</ion-title>
+      <ion-title size="large">Certificaciones</ion-title>
     </ion-toolbar>
   </ion-header>
+
+  <ion-item>
+    <ion-label>Nombre del Certificado</ion-label>
+    <ion-input [(ngModel)]="nombreCertificado" placeholder="Nombre del certificado"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Fecha de Obtención</ion-label>
+    <ion-input type="date" [(ngModel)]="fechaObtencion"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>¿El certificado venció?</ion-label>
+    <ion-checkbox [(ngModel)]="certificadoVencido"></ion-checkbox>
+  </ion-item>
+
+  <ion-item *ngIf="certificadoVencido">
+    <ion-label>Fecha de Vencimiento</ion-label>
+    <ion-input type="date" [(ngModel)]="fechaVencimiento"></ion-input>
+  </ion-item>
+
+  <ion-button expand="full" (click)="guardarCertificado()">Guardar</ion-button>
+  <ion-button expand="full" (click)="limpiarFormulario()">Limpiar Datos</ion-button>
 </ion-content>

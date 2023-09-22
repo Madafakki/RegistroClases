@@ -43,6 +43,13 @@ export class HomePage {
     };
     this.router.navigate(['principal'], navigationExtras);
   }
+
+  segmentChanged(event: any) {
+    const selectedSegment = event.detail.value;
+
+    // Actualizar la ruta según el segmento seleccionado
+    this.router.navigate(['/home/' + selectedSegment]);
+  }
 }
 
 
