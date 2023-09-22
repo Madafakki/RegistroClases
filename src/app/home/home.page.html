@@ -1,27 +1,27 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
+    <ion-segment [(ngModel)]="segment">
+      <ion-segment-button value="experiencia-laboral">
+        Experiencia Laboral
+      </ion-segment-button>
+      <ion-segment-button value="certificaciones">
+        Certificaciones
+      </ion-segment-button>
+      <ion-segment-button value="mis-datos">
+        Mis Datos
+      </ion-segment-button>
+    </ion-segment>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
+      <ion-title size="large">Home</ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <div id="container">
-    <h1>SCANNER QR</h1>
-
-    <zxing-scanner (scanSuccess)="onCodeResult($event)"></zxing-scanner>
-
-    <p>
-      <small>Scanner Result:</small>
-      <!-- Asegúrate de que estás utilizando el nombre correcto de la propiedad -->
-      <strong>{{ scannerResult }}</strong>
-    </p>
+  <div [ngSwitch]="segment">
+    <router-outlet></router-outlet> <!-- Agrega este router-outlet -->
   </div>
 </ion-content>

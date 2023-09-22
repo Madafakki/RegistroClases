@@ -14,63 +14,64 @@ export class LoginPage implements OnInit {
   mdlnew_contra: string = '';
   isAlertOpen = false;
   alertButtons = ['OK'];
-  user:string="";
-  password:string="";
+  user: string = "";
+  password: string = "";
   mostrarBotones: boolean = false;
-  constructor(private router: Router){ 
+  constructor(private router: Router) {
   }
 
-  ngOnInit(){
-        let parametros = this.router.getCurrentNavigation();
-        console.log(parametros?.extras.state);
-        if (parametros?.extras.state) {
-          this.mdl_user = parametros?.extras.state['usuario'];
-          this.mdl_contra = parametros?.extras.state['pass'];
-          this.mdlnew_contra=parametros?.extras.state['newpass']
-        }
-    };
-    
-  ingresar(){
-    if (this.user=="" || this.password==""){
-      console.log("XD")
+  ngOnInit() {
+    let parametros = this.router.getCurrentNavigation();
+    console.log(parametros?.extras.state);
+    if (parametros?.extras.state) {
+      this.mdl_user = parametros?.extras.state['usuario'];
+      this.mdl_contra = parametros?.extras.state['pass'];
+      this.mdlnew_contra = parametros?.extras.state['newpass']
+    }
+  };
+
+  ingresar() {
+    if (this.user == "" || this.password == "") {
+      console.log("escribe causa")
 
     }
-    else{
-    if (this.user == this.mdl_user && (this.password == this.mdl_contra || this.password == this.mdlnew_contra)){
-      let parametros: NavigationExtras = {
-        state: {
-          user: this.mdl_user,
-          pass: this.mdl_contra,
-          newpass:this.mdlnew_contra
-        },
-        replaceUrl:true
-      }
-      this.router.navigate(['principal'], parametros);
-    }
     else {
-      this.isAlertOpen = true;
+      if (this.user == this.mdl_user && (this.password == this.mdl_contra || this.password == this.mdlnew_contra)) {
+        let parametros: NavigationExtras = {
+          state: {
+            user: this.mdl_user,
+            pass: this.mdl_contra,
+            newpass: this.mdlnew_contra
+          },
+          replaceUrl: true
+        }
+        this.router.navigate(['home'], parametros);
+      }
+      else {
+        this.isAlertOpen = true;
+      }
     }
-  }}
-  restablecer(){
+  }
+  restablecer() {
     let parametros: NavigationExtras = {
       state: {
         user: this.mdl_user,
         pass: this.mdl_contra,
-        newpass:this.mdlnew_contra
+        newpass: this.mdlnew_contra
       },
-      replaceUrl:true
+      replaceUrl: true
     }
 
-    this.router.navigate(["restcont"],parametros)
+    this.router.navigate(["restcont"], parametros)
   }
   setOpen(isOpen: boolean) {
     this.isAlertOpen = isOpen;
   }
-  registrar(){
-    let parametros: NavigationExtras={
-      replaceUrl:true
+  registrar() {
+    let parametros: NavigationExtras = {
+      replaceUrl: true
     }
-    this.router.navigate(["registro"],parametros)
+    this.router.navigate(["registro"], parametros)
   }
 
 }

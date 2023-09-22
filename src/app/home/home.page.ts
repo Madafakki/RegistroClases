@@ -1,18 +1,48 @@
 import { Component } from '@angular/core';
-import { ZXingScannerModule } from '@zxing/ngx-scanner';
+import { NavigationExtras, Router } from '@angular/router';
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-  scannerResult: string = '';
+  segment: string = 'experiencia-laboral'; // Segmento inicial
 
-  title = 'ANGULARQRSCANNER';
+  usuario: string = "";
+  contrasena: string = "";
 
-  onCodeResult(result: string) {
-    this.scannerResult = result;
+  constructor(private router: Router) { }
+
+  ngOnInit() {
+    // Tu código de inicialización aquí
+    let parametros = this.router.getCurrentNavigation();
+    if (parametros?.extras.state) {
+      this.usuario = parametros?.extras.state['user'];
+      this.contrasena = parametros?.extras.state['pass'];
+    }
   }
-  constructor() { }
 
+  volver() {
+    let parametros: NavigationExtras = {
+      state: {
+        user: this.usuario,
+        pass: this.contrasena
+      },
+      replaceUrl: true
+    };
+    this.router.navigate(['login'], parametros);
+  }
+
+  irAScannerQR() {
+    // Navegar al scanner QR y pasar los datos de usuario y contraseña
+    const navigationExtras: NavigationExtras = {
+      state: {
+        user: this.usuario,
+        pass: this.contrasena
+      }
+    };
+    this.router.navigate(['principal'], navigationExtras);
+  }
 }
+
+
